@@ -1,0 +1,52 @@
+{
+  "browser": {
+    "status": "VULNERABLE",
+    "vulnerable": "true",
+    "firstId": "documentId=100",
+    "secondId": "documentId=100",
+    "bypassId": "documentId=200",
+    "firstCapability": "https://files.example.invalid/signed/payroll-100?sig=CAPABILITY_A",
+    "secondCapability": "https://files.example.invalid/signed/payroll-100?sig=CAPABILITY_A",
+    "bypassCapability": "https://files.example.invalid/signed/public-200?sig=CAPABILITY_B",
+    "ngVersion": "22.1.2"
+  },
+  "browserPosts": [
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:43127/api/rpc/document-query",
+      "contentType": "application/x-protobuf"
+    }
+  ],
+  "originLog": [
+    {
+      "call": 1,
+      "documentId": 100,
+      "bodyHex": "0864",
+      "userAgent": "node"
+    },
+    {
+      "call": 2,
+      "documentId": 200,
+      "bodyHex": "08c801",
+      "userAgent": "node"
+    },
+    {
+      "call": 3,
+      "documentId": 200,
+      "bodyHex": "08c801",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36"
+    }
+  ],
+  "pageErrors": [],
+  "assertions": {
+    "ssrResponseAlreadyVulnerable": true,
+    "hydratedDomVulnerable": true,
+    "cachedSecondReplayedFirst": true,
+    "bypassControlCorrect": true,
+    "browserOnlySentBypassPost": true,
+    "originSawNoCachedSecond": true,
+    "originSawExpectedWireBytes": true,
+    "noPageErrors": true
+  },
+  "passed": true
+}

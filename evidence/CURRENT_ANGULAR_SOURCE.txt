@@ -1,0 +1,19 @@
+Angular 22.1.2 source continuity
+================================
+
+request.ts
+https://github.com/angular/angular/blob/v22.1.2/packages/common/http/src/request.ts
+
+serializeBody() returns already-serialized ArrayBuffer, Blob, FormData, URLSearchParams and string bodies directly.
+
+transfer_cache.ts
+https://github.com/angular/angular/blob/v22.1.2/packages/common/http/src/transfer_cache.ts
+
+let serializedBody = request.serializeBody();
+if (serializedBody instanceof URLSearchParams) {
+  serializedBody = sortAndConcatParams(serializedBody);
+} else if (typeof serializedBody !== 'string') {
+  serializedBody = '';
+}
+
+Therefore two different protobuf Blob request bodies contribute the same empty body value to the cache-key preimage.

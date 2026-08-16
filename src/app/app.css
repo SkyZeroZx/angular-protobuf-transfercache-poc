@@ -1,0 +1,21 @@
+:host {
+  font-family: system-ui, sans-serif;
+  display: block;
+}
+main {
+  max-width: 880px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+section {
+  display: grid;
+  gap: 1rem;
+}
+article {
+  border: 1px solid #bbb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+code {
+  overflow-wrap: anywhere;
+}
