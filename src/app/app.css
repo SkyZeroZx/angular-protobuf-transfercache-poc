@@ -2,20 +2,15 @@
   font-family: system-ui, sans-serif;
   display: block;
 }
-main {
-  max-width: 880px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+header {
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  padding: 1rem max(1rem, calc((100% - 880px) / 2));
 }
-section {
-  display: grid;
+nav {
+  display: flex;
   gap: 1rem;
-}
-article {
-  border: 1px solid #bbb;
-  border-radius: 0.5rem;
-  padding: 1rem;
-}
-code {
-  overflow-wrap: anywhere;
 }

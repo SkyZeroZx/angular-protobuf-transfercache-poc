@@ -9,6 +9,8 @@ import {
   DocumentResultSchema,
 } from '../proto/generated/document_pb';
 
+export type RequestBodyType = 'blob' | 'arraybuffer';
+
 @Injectable({providedIn: 'root'})
 export class DocumentRpcService {
   private readonly http = inject(HttpClient);
@@ -19,15 +21,18 @@ export class DocumentRpcService {
 
   query(
     documentId: number,
+    bodyType: RequestBodyType,
     useTransferCache = true,
   ): Observable<DocumentResult> {
     const request = create(DocumentQuerySchema, {documentId});
     const requestBytes = toBinary(DocumentQuerySchema, request);
 
-    // Mirrors a real protobuf Angular client: protobuf bytes -> Blob -> HttpClient POST.
     const requestBuffer = new ArrayBuffer(requestBytes.byteLength);
     new Uint8Array(requestBuffer).set(requestBytes);
-    const body = new Blob([requestBuffer], {type: 'application/x-protobuf'});
+    const body =
+      bodyType === 'blob'
+        ? new Blob([requestBuffer], {type: 'application/x-protobuf'})
+        : requestBuffer;
 
     return this.http
       .post('/api/rpc/document-query', body, {

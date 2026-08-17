@@ -9,7 +9,8 @@
     "proto:generate": "buf generate",
     "build": "npm run proto:generate && ng build --configuration production",
     "serve:ssr": "node dist/angular-protobuf-transfercache-poc/server/server.mjs",
-    "validate": "node scripts/validate-playwright.mjs"
+    "validate": "node scripts/validate-playwright.mjs --expect=vulnerable",
+    "validate:fixed": "node scripts/validate-playwright.mjs --expect=fixed"
   },
   "dependencies": {
     "@angular/common": "22.1.2",
